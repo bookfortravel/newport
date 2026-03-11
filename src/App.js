@@ -195,7 +195,7 @@ About Us
 
       {/* CATEGORY SECTION */}
 
-      <div style={{ padding: "70px 80px", background: "#fafafa" }}>
+      <div className="category-section">
 
         <h2 style={{
           textAlign: "center",
@@ -209,7 +209,7 @@ About Us
   <div className="category-grid">
 
           {/* DRESSES */}
-          <div style={{ position: "relative", overflow: "hidden", borderRadius: "8px" }}>
+          <div style={{ position: "relative", overflow: "hidden", borderRadius: "5px" }}>
             <img
               src={dress}
               alt="Dresses"
@@ -319,7 +319,7 @@ About Us
 
       {/* WHY CHOOSE US SECTION */}
 
-<div style={{ padding: "90px 80px", background: "white" }}>
+<div className="why-section">
 
   <h2 style={{
     textAlign: "center",
@@ -333,8 +333,6 @@ About Us
 <div
 className="why-grid"
 style={{
-display: "grid",
-gap: "40px",
 textAlign: "center"
 }}
 >

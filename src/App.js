@@ -15,9 +15,9 @@ import casual from "./images/casual.jpg";
 import summer from "./images/summer.jpg";
 import party from "./images/party.jpg";
 import festive from "./images/festive.jpg";
-import price from "./images/price.jpg";
-import quality from "./images/quality.jpg";
-import trust from "./images/trust.jpg";
+import price from "./images/price.png";
+import quality from "./images/quality.png";
+import trust from "./images/trust.png";
 import google from "./images/google.png";
 import rating from "./images/rating.png";
 import reviewsVideo from "./videos/reviews.mp4";
@@ -31,6 +31,7 @@ const [showPrivacy, setShowPrivacy] = useState(false);
 const [showTerms, setShowTerms] = useState(false);
 const featuredRef = useRef(null);
 const [menuOpen, setMenuOpen] = useState(false);
+const [showContact, setShowContact] = useState(false);
 
 const scrollToTop = () => {
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -40,16 +41,50 @@ const scrollToCollections = () => {
   featuredRef.current.scrollIntoView({ behavior: "smooth" });
 };
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % images.length);
-    }, 5000);
+useEffect(() => {
 
-    return () => clearInterval(interval);
-  }, []);
+const interval = setInterval(() => {
+  setCurrent((prev) => (prev + 1) % images.length);
+}, 5000);
 
+return () => clearInterval(interval);
+
+}, []);
+
+
+useEffect(() => {
+
+const container = document.querySelector(".why-scroll");
+if(!container) return;
+
+const card = container.querySelector(".why-card");
+if(!card) return;
+
+const cardWidth = card.offsetWidth + 40;
+
+let index = 0;
+const totalCards = container.querySelectorAll(".why-card").length;
+
+const autoScroll = setInterval(()=>{
+
+index++;
+
+if(index >= totalCards){
+index = 0;
+}
+
+container.scrollTo({
+left: index * cardWidth,
+behavior:"smooth"
+});
+
+},3000);
+
+return ()=> clearInterval(autoScroll);
+
+},[]);
   return (
-    <div>
+  <div style={{overflowX:"hidden", width:"100%"}}>
 
       {/* HERO SECTION */}
       <div
@@ -114,7 +149,12 @@ onClick={()=>setShowAbout(true)}
 About Us
 </span>
 
-<span>Contact</span>
+<span
+style={{cursor:"pointer"}}
+onClick={()=>setShowContact(true)}
+>
+Contact
+</span>
 
 </div>
         </div>
@@ -153,14 +193,17 @@ About Us
             </h2>
           </div>
 
-          <h1
-            style={{
-              fontSize: "46px",
-              marginBottom: "6px",
-              fontWeight: "700",
-              color: "grey"
-            }}
-          >
+<h1
+  style={{
+    fontSize: "46px",
+    maxWidth: "90%",
+    margin: "0 auto",
+    wordBreak: "break-word",
+    marginBottom: "6px",
+    fontWeight: "700",
+    color: "grey"
+  }}
+>
             Modern Fashion For Women
           </h1>
 
@@ -317,124 +360,70 @@ About Us
       </div>
 
 
-      {/* WHY CHOOSE US SECTION */}
+
+{/* WHY CHOOSE US */}
 
 <div className="why-section">
 
-  <h2 style={{
-    textAlign: "center",
-    fontSize: "34px",
-    marginBottom: "70px",
-    letterSpacing: "4px"
-  }}>
-    WHY CHOOSE US
-  </h2>
-
-<div
-className="why-grid"
+<h2
 style={{
-textAlign: "center"
+textAlign:"center",
+fontSize:"32px",
+letterSpacing:"3px",
+marginBottom:"40px"
 }}
 >
+WHY CHOOSE US
+</h2>
 
-    {/* CARD 1 */}
-    <div
-      style={{
-        padding: "45px",
-        borderRadius: "14px",
-        background: "white",
-        boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-        transition: "transform 0.3s ease"
-      }}
-      onMouseEnter={(e)=>e.currentTarget.style.transform="translateY(-8px)"}
-      onMouseLeave={(e)=>e.currentTarget.style.transform="translateY(0)"}
-    >
+<div className="why-scroll">
 
-      <img
-        src={price}
-        alt="Best Prices"
-        style={{ height: "200px", marginBottom: "18px" }}
-      />
+{/* CARD 1 */}
 
-      <h3 style={{ marginBottom: "10px", fontSize: "20px" }}>
-        Unbeatable Prices
-      </h3>
+<div className="why-card">
 
-      <p style={{ color: "gray", fontSize: "15px" }}>
-        Fashion starting from ₹999
-      </p>
+<img src={price} alt="price"/>
 
-    </div>
+<h3>Unbeatable Prices</h3>
+
+<p>Fashion starting from ₹999</p>
+
+</div>
 
 
-    {/* CARD 2 */}
-    <div
-      style={{
-        padding: "45px",
-        borderRadius: "14px",
-        background: "white",
-        boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-        transition: "transform 0.3s ease"
-      }}
-      onMouseEnter={(e)=>e.currentTarget.style.transform="translateY(-8px)"}
-      onMouseLeave={(e)=>e.currentTarget.style.transform="translateY(0)"}
-    >
+{/* CARD 2 */}
 
-      <img
-        src={quality}
-        alt="Best Quality"
-        style={{ height: "200px", marginBottom: "18px" }}
-      />
+<div className="why-card">
 
-      <h3 style={{ marginBottom: "10px", fontSize: "20px" }}>
-        Best Quality
-      </h3>
+<img src={quality} alt="quality"/>
 
-      <p style={{ color: "gray", fontSize: "15px" }}>
-        Premium fabrics & finishing
-      </p>
+<h3>Premium Quality</h3>
 
-    </div>
+<p>Superior fabrics & stitching</p>
+
+</div>
 
 
-    {/* CARD 3 */}
-    <div
-      style={{
-        padding: "45px",
-        borderRadius: "14px",
-        background: "white",
-        boxShadow: "0 10px 30px rgba(0,0,0,0.08)",
-        transition: "transform 0.3s ease"
-      }}
-      onMouseEnter={(e)=>e.currentTarget.style.transform="translateY(-8px)"}
-      onMouseLeave={(e)=>e.currentTarget.style.transform="translateY(0)"}
-    >
+{/* CARD 3 */}
 
-      <img
-        src={trust}
-        alt="Trusted Brand"
-        style={{ height: "200px", marginBottom: "18px" }}
-      />
+<div className="why-card">
 
-      <h3 style={{ marginBottom: "10px", fontSize: "20px" }}>
-        Trusted Brand
-      </h3>
+<img src={trust} alt="trust"/>
 
-      <p style={{ color: "gray", fontSize: "15px" }}>
-        Present in the market for 20+ years
-      </p>
+<h3>Trusted Brand</h3>
 
-    </div>
+<p>Serving customers for 20+ years</p>
 
-  </div>
+</div>
+
+</div>
 
 </div>
 
 
       {/* FEATURED COLLECTIONS */}
 
-      <div ref={featuredRef} style={{ padding: "80px 80px", background: "#fafafa" }}>
-
+<div className="featured-section" ref={featuredRef}>
         <h2 style={{
           textAlign: "center",
           fontSize: "32px",
@@ -542,7 +531,7 @@ gap: "30px"
 
       {/* GOOGLE REVIEWS SECTION */}
 
-      <div style={{ padding: "90px 80px", background: "#fafafa", textAlign: "center" }}>
+      <div className="reviews-section">
 
         {/* GOOGLE RATING HEADER */}
 
@@ -598,11 +587,13 @@ gap: "30px"
 
       {/* FOOTER */}
 
-      <div style={{
-        background: "#ff4f7a",
-        padding: "10px 80px",
-        color: "white"
-      }}>
+<div
+className="footer-section"
+style={{
+background: "#ff4f7a",
+color: "white"
+}}
+>
 
         <div style={{
           display: "flex",
@@ -661,7 +652,7 @@ MP, India 453441
             </p>
 
             <p style={{ margin: "6px 0" }}>
-              📞 +91 8989504122
+              📞 +91 9302286656
             </p>
 
             <p style={{ margin: "6px 0" }}>
@@ -681,8 +672,7 @@ MP, India 453441
           paddingTop: "20px",
           fontSize: "14px"
         }}>
-         © 2026 STYLE LOFT. All rights reserved.
-
+          © 2026 STYLE LOFT. All rights reserved.
         </div>
 
       </div>
@@ -691,7 +681,7 @@ MP, India 453441
 {/* WHATSAPP BUTTON */}
 
 <a
-href="https://wa.me/918989504122"
+href="https://wa.me/919302286656"
 target="_blank"
 rel="noopener noreferrer"
 className="whatsapp-button"
@@ -702,8 +692,7 @@ alt="WhatsApp"
 style={{ width: "60px" }}
 />
 </a>
-{/* ABOUT US POPUP */}
-{showAbout && (
+{showContact && (
   <div
     style={{
       position: "fixed",
@@ -722,13 +711,70 @@ style={{ width: "60px" }}
       style={{
         background: "white",
         width: "80%",
-        maxWidth: "900px",
+        maxWidth: "500px",
         borderRadius: "10px",
-        overflow: "hidden",
+        padding: "40px",
         position: "relative",
-        paddingTop: "50px"
+        textAlign: "center"
       }}
     >
+
+      <button
+        onClick={() => setShowContact(false)}
+        style={{
+          position: "absolute",
+          top: "10px",
+          right: "15px",
+          fontSize: "18px",
+          padding: "6px 12px",
+          background: "#ff4f7a",
+          color: "white",
+          border: "none",
+          borderRadius: "4px",
+          cursor: "pointer"
+        }}
+      >
+        CLOSE
+      </button>
+
+      <h2 style={{marginBottom:"25px"}}>Contact Us</h2>
+
+      <p>📍 22, Main Street, Mhow, MP, India 453441</p>
+      <p>📞 +91 9302286656</p>
+      <p>✉ newport4056@gmail.com</p>
+
+    </div>
+  </div>
+)}
+{/* ABOUT US POPUP */}
+{showAbout && (
+  <div
+    style={{
+      position: "fixed",
+      top: 0,
+      left: 0,
+      width: "100%",
+      height: "100%",
+      background: "rgba(0,0,0,0.6)",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      zIndex: 1000
+    }}
+  >
+<div
+  style={{
+    background: "white",
+    width: "90%",
+    maxWidth: "900px",
+    maxHeight: "90vh",
+    borderRadius: "10px",
+    overflowY: "auto",
+    overflowX: "hidden",
+    position: "relative",
+    padding: "40px"
+  }}
+>
 
       {/* SIMPLE CLOSE BUTTON */}
 

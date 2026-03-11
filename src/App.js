@@ -681,7 +681,8 @@ MP, India 453441
           paddingTop: "20px",
           fontSize: "14px"
         }}>
-          © 2026 Newport Fashion. All rights reserved.
+         © 2026 STYLE LOFT. All rights reserved.
+
         </div>
 
       </div>

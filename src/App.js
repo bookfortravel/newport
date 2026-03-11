@@ -756,24 +756,25 @@ style={{ width: "60px" }}
       width: "100%",
       height: "100%",
       background: "rgba(0,0,0,0.6)",
-      display: "flex",
-      justifyContent: "center",
-      alignItems: "center",
-      zIndex: 1000
+      overflowY: "auto",
+      overflowX: "hidden",
+      zIndex: 1000,
+      padding: "40px 0"
     }}
   >
 <div
-  style={{
-    background: "white",
-    width: "90%",
-    maxWidth: "900px",
-    maxHeight: "90vh",
-    borderRadius: "10px",
-    overflowY: "auto",
-    overflowX: "hidden",
-    position: "relative",
-    padding: "40px"
-  }}
+style={{
+background: "white",
+width: "92%",
+maxWidth: "700px",
+margin: "0 auto",
+maxHeight: "90vh",
+borderRadius: "10px",
+overflowY: "auto",
+overflowX: "hidden",
+position: "relative",
+padding: "30px"
+}}
 >
 
       {/* SIMPLE CLOSE BUTTON */}
@@ -797,7 +798,9 @@ style={{ width: "60px" }}
         CLOSE
       </button>
 
-      <AboutUs close={() => setShowAbout(false)} />
+<div className="popup-content">
+<AboutUs close={() => setShowAbout(false)} />
+</div>
 
     </div>
   </div>

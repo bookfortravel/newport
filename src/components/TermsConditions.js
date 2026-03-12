@@ -19,12 +19,16 @@ function TermsConditions({ close }) {
 
       <div
         style={{
-          width: "70%",
-          background: "white",
-          borderRadius: "10px",
-          padding: "40px",
-          boxShadow: "0 10px 40px rgba(0,0,0,0.3)",
-          position: "relative"
+width: "90%",
+maxWidth: "800px",
+maxHeight: "90vh",
+background: "white",
+borderRadius: "10px",
+padding: "30px 25px",
+overflowY: "auto",
+overflowX: "hidden",
+boxShadow: "0 10px 40px rgba(0,0,0,0.3)",
+position: "relative"
         }}
       >
 

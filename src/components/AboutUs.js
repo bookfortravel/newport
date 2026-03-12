@@ -18,15 +18,18 @@ function AboutUs({ close }) {
       }}
     >
 
-      <div
-        style={{
-          width: "70%",
-          background: "white",
-          borderRadius: "10px",
-          overflow: "hidden",
-          boxShadow: "0 10px 40px rgba(0,0,0,0.3)"
-        }}
-      >
+<div
+  style={{
+    width: "90%",
+    maxWidth: "800px",
+    maxHeight: "90vh",
+    background: "white",
+    borderRadius: "10px",
+    overflowY: "auto",
+    overflowX: "hidden",
+    boxShadow: "0 10px 40px rgba(0,0,0,0.3)"
+  }}
+>
 
         {/* HEADER IMAGE */}
 
